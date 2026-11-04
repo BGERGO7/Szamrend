@@ -139,27 +139,31 @@ case "$1" in
                         case "$option" in
                             --keres|--tol|--ig|--csatorna)
                                 next=$((i + 1))
-                                if [ "$next" -gt "$#" ] || [ -z "${!next}" ]; then
-                                    echo "Hiba: Hianyzo ertek a(z) $option kapcsolohoz!" 1>&2
+                                if [[ "$next" -gt "$#" ]] || [[ -z "${!next}" ]]; then
+                                    echo "Hiba: Hianyzo ertek a(z) $option kapcsolohoz!" >&2
                                     exit 1
                                 fi
                                 case "$option" in
-                                    --keres) search="${!next}" ;;
+                                    --keres) 
+                                        search="${!next}" 
+                                        ;;
                                     --tol)
-                                        if ! valid_date "${!next}"; then
-                                            echo "Hiba: Ervenytelen datum: ${!next}" 1>&2
+                                        if [[ ! valid_date "${!next}" ]]; then
+                                            echo "Hiba: Ervenytelen datum: ${!next}" >&2
                                             exit 1
                                         fi
                                         from="${!next}"
                                         ;;
                                     --ig)
-                                        if ! valid_date "${!next}"; then
-                                            echo "Hiba: Ervenytelen datum: ${!next}" 1>&2
+                                        if [[ ! valid_date "${!next}" ]]; then
+                                            echo "Hiba: Ervenytelen datum: ${!next}" >&2
                                             exit 1
                                         fi
                                         to="${!next}"
                                         ;;
-                                    --csatorna) channel="#${!next}" ;;
+                                    --csatorna) 
+                                        channel="#${!next}" 
+                                        ;;
                                 esac
                                 i=$((i + 2))
                                 ;;
