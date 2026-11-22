@@ -1,0 +1,13 @@
+FROM alpine:3.20
+
+WORKDIR /app
+COPY . .
+
+RUN apk add --no-cache bash curl
+
+RUN addgroup -S app && adduser -S -G app -h /home/app app
+
+RUN chmod 0755 logtool.sh
+USER app
+
+ENTRYPOINT ["/app/logtool.sh"]

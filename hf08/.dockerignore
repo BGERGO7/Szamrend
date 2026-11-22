@@ -1,0 +1,8 @@
+.git
+.gitignore
+adatok/
+__pycache__/
+*.pyc
+*.tmp
+Dockerfile.bad
+README.md
